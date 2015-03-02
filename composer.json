@@ -1,0 +1,41 @@
+{
+    "name": "romeoz/rock-image",
+    "description": "[READ ONLY] Image module for Rock Framework",
+    "keywords": ["image", "thumb"],
+    "type": "library",
+    "license": "MIT",
+    "support": {
+        "email": "serggalka@gmail.com",
+        "issues": "https://github.com/romeOz/rock-image/issues",
+        "source": "https://github.com/romeOz/rock-image"
+    },
+    "authors": [
+        {
+            "name": "Ruslan",
+            "email": "serggalka@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "romeoz/rock-base" : "0.10.*",
+        "imagine/imagine": "0.6.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.4.*",
+        "romeoz/rock-file" : "0.10.*"
+    },
+    "suggest": {
+      "romeoz/rock-file" : "required by Rock File"
+    },
+    "autoload": {
+        "psr-4": {
+            "rock\\image\\": "src/image/",
+            "rock\\imagine\\": "src/imagine/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.10-dev"
+        }
+    }
+}
