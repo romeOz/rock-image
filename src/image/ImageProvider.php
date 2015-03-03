@@ -2,6 +2,7 @@
 
 namespace rock\image;
 
+use Imagine\Image\ImageInterface;
 use rock\base\Alias;
 use rock\base\BaseException;
 use rock\base\ObjectInterface;
@@ -29,7 +30,9 @@ class ImageProvider implements ObjectInterface
     protected $resource;
     /** @var  string */
     protected $src;
-    
+    /** @var  ImageInterface */
+    protected $image;
+
     public function init()
     {
         if (!$this->adapter = Instance::ensure($this->adapter, null, false)) {
@@ -42,21 +45,19 @@ class ImageProvider implements ObjectInterface
         $this->srcCache = Alias::getAlias($this->srcCache);
     }
 
-    public function get($path, $width = null, $height = null)
+    public function get($path, $width = 0, $height = 0)
     {
         $path = $this->preparePath($path);
         if (!$this->adapter->has($path)) {
             return $this->srcImage . '/'. ltrim($path, '/');
         }
-
         $this->resource = $this->adapter->readStream($path);
 
         if ((empty($width) && empty($height)) || empty($this->adapterCache)) {
             return $this->srcImage . '/'. ltrim($path, '/');
         }
-
+        $this->image = Image::getImagine()->read($this->resource);
         $this->calculateDimensions($width, $height);
-
         $this->prepareImage($path);
 
         return $this->src;
@@ -74,10 +75,10 @@ class ImageProvider implements ObjectInterface
     protected function calculateDimensions($width = null, $height = null)
     {
         if (empty($width)) {
-            $width = Image::getImagine()->read($this->resource)->getSize()->getWidth();
+            $width = $this->image->getSize()->getWidth();
         }
         if (empty($height)) {
-            $height = Image::getImagine()->read($this->resource)->getSize()->getHeight();
+            $height = $this->image->getSize()->getHeight();
         }
 
         $this->width = $width;
@@ -96,7 +97,9 @@ class ImageProvider implements ObjectInterface
             call_user_func($this->handler, $path, $this);
             return;
         }
-        if (!$this->adapterCache->write($path, Image::thumbnail($this->resource, $this->width, $this->height)->get('jpg'))) {
+        $string = Image::thumbnail($this->image, $this->width, $this->height)->get('jpg');
+
+        if (!$this->adapterCache->write($path, $string)) {
             if (class_exists('\rock\log\Log')) {
                 $message = BaseException::convertExceptionToString(new ImageException(ImageException::NOT_CREATE_FILE, ['path' => $path]));
                 Log::warn($message);

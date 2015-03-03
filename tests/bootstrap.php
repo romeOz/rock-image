@@ -15,3 +15,4 @@ date_default_timezone_set('UTC');
 
 define('ROCKUNIT_RUNTIME', __DIR__ . '/runtime');
 Alias::setAlias('rockunit', __DIR__);
+\rock\base\Alias::setAlias('web', '/assets');

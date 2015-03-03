@@ -5,8 +5,7 @@ namespace rockunit;
 use rock\imagine\Image;
 
 /**
- * @group vendor
- * @group imagine
+ * @group image
  */
 class ImageImagickTest extends AbstractImageTest
 {

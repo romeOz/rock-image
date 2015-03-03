@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if (php --version | grep -i HipHop > /dev/null); then
-    echo "Skipping APC on HHVM"
+    echo "Skipping Imagick on HHVM"
     exit 0
 fi
 

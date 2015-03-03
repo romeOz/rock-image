@@ -37,7 +37,7 @@ abstract class AbstractImageTest extends \PHPUnit_Framework_TestCase
 
         $fontFile = Alias::getAlias('@rockunit/data/imagine/GothamRnd-Light') . '.otf';
 
-        $img = Image::text($this->imageFile, 'Yii-2 Image', $fontFile, [0, 0], [
+        $img = Image::text($this->imageFile, 'Rock Image', $fontFile, [0, 0], [
             'size' => 12,
             'color' => '000'
         ]);

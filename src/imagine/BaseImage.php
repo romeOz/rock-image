@@ -128,7 +128,7 @@ class BaseImage
      * The function differs from `\Imagine\Image\ImageInterface::thumbnail()` function that
      * it keeps the aspect ratio of the image.
      *
-     * @param string|resource $pathOrResource the image file path or path alias.
+     * @param string|resource|ImageInterface $pathOrResource the image file path or path alias.
      * @param integer $width the width in pixels to create the thumbnail
      * @param integer $height the height in pixels to create the thumbnail
      * @param string $mode
@@ -137,10 +137,16 @@ class BaseImage
     public static function thumbnail($pathOrResource, $width, $height, $mode = ManipulatorInterface::THUMBNAIL_OUTBOUND)
     {
         $box = new Box($width, $height);
-        /** @var ImageInterface $img */
-        $img = is_resource($pathOrResource)
-            ? static::getImagine()->read($pathOrResource)
-            : static::getImagine()->open(Alias::getAlias($pathOrResource));
+
+        if (!$pathOrResource instanceof ImageInterface) {
+            /** @var ImageInterface $img */
+            $img = is_resource($pathOrResource)
+                ? static::getImagine()->read($pathOrResource)
+                : static::getImagine()->open(Alias::getAlias($pathOrResource));
+
+        } else {
+            $img = $pathOrResource;
+        }
 
         if (($img->getSize()->getWidth() <= $box->getWidth() && $img->getSize()->getHeight() <= $box->getHeight()) || (!$box->getWidth() && !$box->getHeight())) {
             return $img->copy();
