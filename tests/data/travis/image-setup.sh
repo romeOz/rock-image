@@ -26,7 +26,7 @@ echo "extension = imagick.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/p
 ###
 GMAGICK=1.1.7RC2
 
-sudo apt-get install graphicsmagick
+sudo apt-get install libgraphicsmagick1-dev
 wget http://pecl.php.net/get/gmagick-1.1.7RC2.tgz
 tar zxvf gmagick-${GMAGICK}.tgz
 cd "gmagick-${GMAGICK}"
