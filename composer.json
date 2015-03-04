@@ -1,6 +1,6 @@
 {
     "name": "romeoz/rock-image",
-    "description": "[READ ONLY] Image module for Rock Framework",
+    "description": "Image module for Rock Framework",
     "keywords": ["image", "thumb"],
     "type": "library",
     "license": "MIT",
