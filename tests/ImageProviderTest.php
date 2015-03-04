@@ -63,6 +63,4 @@ class ImageProviderTest extends \PHPUnit_Framework_TestCase
         parent::tearDownAfterClass();
         FileHelper::deleteDirectory(Alias::getAlias('@rockunit/runtime'));
     }
-
-
 }
