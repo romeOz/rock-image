@@ -24,7 +24,7 @@ class ImageProvider implements ObjectInterface
     /** @var  callable */
     public $handler;
     /** @var FileManager|array */
-    public $adapter ;
+    public $adapter;
     /** @var FileManager|array */
     public $adapterCache;
     protected $resource;
@@ -35,7 +35,7 @@ class ImageProvider implements ObjectInterface
 
     public function init()
     {
-        if (!$this->adapter = Instance::ensure($this->adapter, null, false)) {
+        if (!$this->adapter = Instance::ensure($this->adapter, null, [], false)) {
             throw new ImageException(ImageException::NOT_INSTALL_FILE);
         }
 
@@ -49,12 +49,12 @@ class ImageProvider implements ObjectInterface
     {
         $path = $this->preparePath($path);
         if (!$this->adapter->has($path)) {
-            return $this->srcImage . '/'. ltrim($path, '/');
+            return $this->srcImage . '/' . ltrim($path, '/');
         }
         $this->resource = $this->adapter->readStream($path);
 
         if ((empty($width) && empty($height)) || empty($this->adapterCache)) {
-            return $this->srcImage . '/'. ltrim($path, '/');
+            return $this->srcImage . '/' . ltrim($path, '/');
         }
         $this->image = Image::getImagine()->read($this->resource);
         $this->calculateDimensions($width, $height);
@@ -69,7 +69,7 @@ class ImageProvider implements ObjectInterface
             return '';
         }
 
-        return str_replace($this->srcImage , '', $path);
+        return str_replace($this->srcImage, '', $path);
     }
 
     protected function calculateDimensions($width = null, $height = null)
@@ -89,7 +89,7 @@ class ImageProvider implements ObjectInterface
     {
         $metadata = $this->adapter->getMetadata($path);
         $path = implode(DIRECTORY_SEPARATOR, [trim($metadata['dirname'], DIRECTORY_SEPARATOR), "{$this->width}x{$this->height}", $metadata['basename']]);
-        $this->src = $this->srcCache . '/'. ltrim($path, '/');
+        $this->src = $this->srcCache . '/' . ltrim($path, '/');
         if ($this->adapterCache->has($path)) {
             return;
         }

@@ -3,7 +3,7 @@
 namespace rock\image;
 
 
-interface ThumbInterface 
+interface ThumbInterface
 {
     /**
      * Without width/height

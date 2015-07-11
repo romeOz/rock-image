@@ -117,9 +117,9 @@ class Image
         }
 
         return static::getImagine()
-                     ->open(Alias::getAlias($filename))
-                     ->copy()
-                     ->crop(new Point($start[0], $start[1]), new Box($width, $height));
+            ->open(Alias::getAlias($filename))
+            ->copy()
+            ->crop(new Point($start[0], $start[1]), new Box($width, $height));
     }
 
     /**
@@ -224,7 +224,7 @@ class Image
         $fontAngle = ArrayHelper::getValue($fontOptions, ['angle'], 0);
 
         $img = static::getImagine()->open(Alias::getAlias($filename));
-        $font = static::getImagine()->font(Alias::getAlias($fontFile), $fontSize,(new RGB())->color($fontColor));
+        $font = static::getImagine()->font(Alias::getAlias($fontFile), $fontSize, (new RGB())->color($fontColor));
 
         $img->draw()->text($text, $font, new Point($start[0], $start[1]), $fontAngle);
 
