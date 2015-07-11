@@ -21,7 +21,7 @@ addons:
   apt:
     packages:
       - autoconf
-      - libgraphicsmagick1-dev
+      - graphicsmagick
 
 install:
   - composer self-update && composer --version
