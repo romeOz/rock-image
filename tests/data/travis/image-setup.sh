@@ -5,9 +5,6 @@ if (php --version | grep -i HipHop > /dev/null); then
     exit 0
 fi
 
-# this is helpful to compile extension
-sudo apt-get install autoconf
-
 ###
 # Install Imagick
 ###
