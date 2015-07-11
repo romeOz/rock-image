@@ -11,6 +11,7 @@ fi
 ###
 GMAGICK=1.1.7RC3
 
+#sudo apt-get install libgraphicsmagick1-dev
 wget http://pecl.php.net/get/gmagick-${GMAGICK}.tgz
 tar zxvf gmagick-${GMAGICK}.tgz
 cd "gmagick-${GMAGICK}"

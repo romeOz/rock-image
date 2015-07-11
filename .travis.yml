@@ -21,7 +21,6 @@ addons:
   apt:
     packages:
       - autoconf
-      - graphicsmagick
 
 install:
   - composer self-update && composer --version
@@ -29,7 +28,7 @@ install:
   - composer require satooshi/php-coveralls:*@dev
   - chmod -R +x tests/data/travis/
   - tests/data/travis/imagick-setup.sh
-  - tests/data/travis/gmagick-setup.sh
+#  - tests/data/travis/gmagick-setup.sh
 
 script:
   - mkdir -p build/logs
