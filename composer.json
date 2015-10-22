@@ -17,8 +17,8 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "romeoz/rock-base" : "0.11.*",
-        "romeoz/rock-file" : "0.10.*",
+        "romeoz/rock-base" : "*@dev",
+        "romeoz/rock-file" : "*@dev",
         "imagine/imagine": "0.6.*"
     },
     "require-dev": {
