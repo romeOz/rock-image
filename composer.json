@@ -18,14 +18,11 @@
     "require": {
         "php": ">=5.4.0",
         "romeoz/rock-base" : "*@dev",
+        "romeoz/rock-file" : "*@dev",
         "imagine/imagine": "0.6.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.7.0",
-        "romeoz/rock-file" : "*@dev"
-    },
-    "suggest": {
-      "romeoz/rock-file" : "required by Rock File"
+        "phpunit/phpunit": "^4.7.0"
     },
     "autoload": {
         "psr-4": {
